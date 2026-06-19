@@ -1,9 +1,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// app/page.tsx — PHASE 1: Structural Wireframe Shell (Client-Approved)
-// All sections inline for zero-dependency Phase 1 delivery.
-// Search "TODO Phase X" to locate all remaining wiring points.
+// app/page.tsx — PHASE 2: Visual Identity & AI Asset Integration
+// All renders wired via next/image. File format is .jpg (Leonardo export).
+// Copy finalized per client-approved Phase 1 feedback.
 // ─────────────────────────────────────────────────────────────────────────────
 
+import Image from "next/image";
 import {
   ArrowRight,
   Menu,
@@ -26,6 +27,74 @@ import {
   Dumbbell,
 } from "lucide-react";
 
+const facilities = [
+  {
+    tag: "01",
+    name: "Basketball Court",
+    spec: "FIBA-standard, floodlit for evening leagues",
+    icon: Target,
+    features: ["FIBA markings", "LED floodlights", "Spectator seating", "Perimeter fencing"],
+    img: "/renders/basketball.jpg",
+  },
+  {
+    tag: "02",
+    name: "7-Aside Football Turf",
+    spec: "FIFA-quality artificial turf for matches & academies",
+    icon: Layers,
+    features: ["FIFA-grade turf", "Stadium lighting", "Team dugouts", "Electronic scoreboard"],
+    img: "/renders/football.jpg",
+  },
+  {
+    tag: "03",
+    name: "Skating Area",
+    spec: "Smooth-surface rink for skate, rollerblade & roller sports",
+    icon: Zap,
+    features: ["Smooth concrete", "Safety barriers", "Beginner zones", "Evening lighting"],
+    img: "/renders/skating.jpg",
+    position: "center 35%",
+  },
+  {
+    tag: "04",
+    name: "Tennis Court",
+    spec: "Competition-grade hard court for casual play & tournaments",
+    icon: Shield,
+    features: ["ITF-grade surface", "Shade canopies", "Scoreboard", "Night lighting"],
+    img: "/renders/tennis.jpg",
+  },
+  {
+    tag: "05",
+    name: "Dancing Section",
+    spec: "Open-air platform with sound hookup for dance & fitness",
+    icon: Music2,
+    features: ["Sound system hookup", "Open-air stage", "Fitness classes", "Cultural events"],
+    img: "/renders/dancing.jpg",
+  },
+  {
+    tag: "06",
+    name: "Chilling Area",
+    spec: "Landscaped green zones with seating, shade & Wi-Fi",
+    icon: Coffee,
+    features: ["Landscaped seating", "Shade structures", "Free Wi-Fi", "Water points"],
+    img: "/renders/chilling.jpg",
+  },
+  {
+    tag: "07",
+    name: "Calisthenics Area",
+    spec: "Open-air strength & movement training zone",
+    icon: Dumbbell,
+    features: ["Pull-up bars", "Parallel bars", "Core stations", "All-weather equipment"],
+    img: "/renders/calisthenics.jpg",
+  },
+];
+
+const gallerySlides = [
+  { id: "01", label: "Basketball Complex", img: "/renders/basketball.jpg" },
+  { id: "02", label: "7-Aside Football Turf", img: "/renders/football.jpg" },
+  { id: "03", label: "Skating Area", img: "/renders/skating.jpg", position: "center 35%" },
+  { id: "04", label: "Tennis Court", img: "/renders/tennis.jpg" },
+  { id: "05", label: "Calisthenics Zone", img: "/renders/calisthenics.jpg" },
+];
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -38,7 +107,6 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
 
-            {/* Logo — TODO Phase 2: Replace with final SVG logo */}
             <div className="flex items-center gap-3">
               <div className="relative w-8 h-8 flex-shrink-0">
                 <div className="absolute inset-0 bg-amber-500 rounded-sm rotate-6" />
@@ -52,7 +120,6 @@ export default function Home() {
               </span>
             </div>
 
-            {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-8">
               {[
                 { label: "Vision",      href: "#vision" },
@@ -71,10 +138,9 @@ export default function Home() {
               ))}
             </div>
 
-            {/* CTAs */}
             <div className="flex items-center gap-3">
-              
-              <a  href="#contact"
+              <a
+                href="#contact"
                 className="hidden md:block text-sm text-slate-400 hover:text-amber-400 transition-colors"
               >
                 Investor Deck
@@ -85,7 +151,6 @@ export default function Home() {
               >
                 Partner With Us
               </a>
-              {/* TODO Phase 3: Wire up mobile drawer */}
               <button className="md:hidden text-slate-400 hover:text-white transition-colors p-1">
                 <Menu size={20} />
               </button>
@@ -96,17 +161,11 @@ export default function Home() {
 
       {/* ═══════════════════════════════════════════════════════════
           HERO SECTION
-          Signature element: amber court-lines CSS grid overlay
-          TODO Phase 2: Replace background div with:
-          <Image src="/renders/hero.webp" alt="Kendy Park aerial"
-          fill className="object-cover" priority />
       ═══════════════════════════════════════════════════════════ */}
       <section id="hero" className="relative min-h-screen flex flex-col">
-
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-slate-800/30" />
 
-          {/* Court-lines grid — signature design element */}
           <div
             className="absolute inset-0 opacity-[0.045]"
             style={{
@@ -121,26 +180,24 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/75 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/20" />
 
-          {/* Right-side image placeholder — desktop only */}
-          {/* TODO Phase 2: Remove this div, replaced by <Image> above */}
+          {/* Hero render — contained box, desktop only */}
           <div className="absolute inset-0 hidden md:flex items-center justify-end pr-12 lg:pr-20">
-            <div className="w-[440px] lg:w-[560px] aspect-video bg-slate-800/25 border border-slate-700/30 rounded-2xl flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-10 h-10 border border-slate-600/50 rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <Building2 size={18} className="text-slate-500" />
-                </div>
-                <p className="text-slate-600 text-xs font-mono">HERO RENDER</p>
-                <p className="text-slate-700 text-xs mt-1">1920 × 1080 · AI Architectural Render</p>
-              </div>
+            <div className="relative w-[440px] lg:w-[560px] aspect-video rounded-2xl overflow-hidden border border-slate-700/30 shadow-2xl">
+              <Image
+                src="/renders/hero.jpg"
+                alt="Aerial view of a Kendy Community Sports Park"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1024px) 440px, 560px"
+              />
             </div>
           </div>
         </div>
 
-        {/* Hero content */}
         <div className="relative z-10 flex-1 flex flex-col justify-center pt-32 pb-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="max-w-3xl">
-
               <div className="inline-flex items-center gap-2.5 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-1.5 mb-8">
                 <span className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
                 <span className="text-amber-400 text-xs font-mono tracking-[0.15em] uppercase">
@@ -161,15 +218,15 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3">
-                
-                <a  href="#invest"
+                <a
+                  href="#invest"
                   className="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 py-4 rounded text-sm transition-all group"
                 >
                   View Investment Opportunity
                   <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
                 </a>
-                
-                <a  href="#facilities"
+                <a
+                  href="#facilities"
                   className="inline-flex items-center justify-center gap-2 border border-slate-700 hover:border-slate-500 text-white px-8 py-4 rounded text-sm transition-all"
                 >
                   Explore Kendy Parks
@@ -177,7 +234,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Stats — TODO Phase 2: Replace "—" with real figures from client */}
             <div className="mt-20 pt-8 border-t border-white/5 flex flex-wrap gap-8 sm:gap-16">
               {[
                 { value: "—",   label: "Kendy Parks in Development" },
@@ -228,23 +284,20 @@ export default function Home() {
 
       {/* ═══════════════════════════════════════════════════════════
           VISION SECTION
-          TODO Phase 2: Replace image placeholder with
-          <Image src="/renders/vision.webp" ... />
       ═══════════════════════════════════════════════════════════ */}
       <section id="vision" className="py-24 lg:py-36">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
 
-            {/* Left: Image placeholder */}
             <div className="relative order-2 lg:order-1">
-              <div className="aspect-[4/3] bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-12 h-12 border border-slate-700 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <Globe size={20} className="text-slate-600" />
-                  </div>
-                  <p className="text-slate-600 text-xs font-mono">VISION IMAGE</p>
-                  <p className="text-slate-700 text-xs mt-1">1200 × 900 · Community Overview Render</p>
-                </div>
+              <div className="relative aspect-[4/3] rounded-2xl border border-slate-800 overflow-hidden">
+                <Image
+                  src="/renders/vision.jpg"
+                  alt="Community members enjoying a Kendy Park"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
               </div>
               <div className="absolute -bottom-5 -right-5 w-44 h-44 border border-amber-500/10 rounded-2xl -z-10" />
               <div className="absolute -bottom-10 -right-10 w-44 h-44 border border-amber-500/[0.06] rounded-2xl -z-10" />
@@ -255,7 +308,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: Content */}
             <div className="order-1 lg:order-2">
               <span className="text-amber-500 text-xs font-mono uppercase tracking-[0.2em] mb-5 block">
                 Our Vision
@@ -310,9 +362,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          FACILITIES SECTION — 7 cards, grows as SKYPARK expands
-          Headline is number-agnostic by design.
-          TODO Phase 2: Replace each card placeholder with <Image>
+          FACILITIES SECTION — 7 cards, real renders
       ═══════════════════════════════════════════════════════════ */}
       <section id="facilities" className="py-24 lg:py-32 border-t border-slate-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -335,82 +385,26 @@ export default function Home() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {[
-              {
-                tag: "01",
-                name: "Basketball Court",
-                spec: "FIBA-standard, floodlit for evening leagues",
-                icon: Target,
-                features: ["FIBA markings", "LED floodlights", "Spectator seating", "Perimeter fencing"],
-                imgNote: "1200 × 800 · Aerial Render",
-              },
-              {
-                tag: "02",
-                name: "7-Aside Football Turf",
-                spec: "FIFA-quality artificial turf for matches & academies",
-                icon: Layers,
-                features: ["FIFA-grade turf", "Stadium lighting", "Team dugouts", "Electronic scoreboard"],
-                imgNote: "1200 × 800 · Aerial Render",
-              },
-              {
-                tag: "03",
-                name: "Skating Area",
-                spec: "Smooth-surface rink for skate, rollerblade & roller sports",
-                icon: Zap,
-                features: ["Smooth concrete", "Safety barriers", "Beginner zones", "Evening lighting"],
-                imgNote: "1200 × 800 · Ground Render",
-              },
-              {
-                tag: "04",
-                name: "Tennis Court",
-                spec: "Competition-grade hard court for casual play & tournaments",
-                icon: Shield,
-                features: ["ITF-grade surface", "Shade canopies", "Scoreboard", "Night lighting"],
-                imgNote: "1200 × 800 · Aerial Render",
-              },
-              {
-                tag: "05",
-                name: "Dancing Section",
-                spec: "Open-air platform with sound hookup for dance & fitness",
-                icon: Music2,
-                features: ["Sound system hookup", "Open-air stage", "Fitness classes", "Cultural events"],
-                imgNote: "1200 × 800 · Ground Render",
-              },
-              {
-                tag: "06",
-                name: "Chilling Area",
-                spec: "Landscaped green zones with seating, shade & Wi-Fi",
-                icon: Coffee,
-                features: ["Landscaped seating", "Shade structures", "Free Wi-Fi", "Water points"],
-                imgNote: "1200 × 800 · Landscape Render",
-              },
-              {
-                tag: "07",
-                name: "Calisthenics Area",
-                spec: "Open-air strength & movement training zone",
-                icon: Dumbbell,
-                features: ["Pull-up bars", "Parallel bars", "Core stations", "All-weather equipment"],
-                imgNote: "1200 × 800 · Ground Render",
-              },
-            ].map((facility) => {
+            {facilities.map((facility) => {
               const FacilityIcon = facility.icon;
               return (
                 <div
                   key={facility.tag}
                   className="group bg-slate-900 rounded-xl border border-slate-800 overflow-hidden hover:border-amber-500/20 transition-all duration-300 flex flex-col"
                 >
-                  {/* TODO Phase 2: Replace this div with:
-                      <div className="relative aspect-[3/2]">
-                        <Image src={`/renders/${facility.tag}.webp`}
-                        alt={facility.name} fill
-                        className="object-cover" />
-                      </div> */}
-                  <div className="aspect-[3/2] bg-slate-800/50 border-b border-slate-800 flex items-center justify-center relative overflow-hidden">
-                    <div className="text-center z-10">
-                      <FacilityIcon size={22} className="text-slate-600 mx-auto mb-2" />
-                      <p className="text-slate-700 text-xs font-mono">{facility.imgNote}</p>
+                  <div className="relative aspect-[3/2] border-b border-slate-800 overflow-hidden">
+                    <Image
+                      src={facility.img}
+                      alt={facility.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      style={facility.position ? { objectPosition: facility.position } : undefined}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-amber-500/0 group-hover:bg-amber-500/[0.06] transition-all duration-500" />
+                    <div className="absolute top-3 left-3 w-8 h-8 bg-slate-950/70 backdrop-blur-sm border border-amber-500/30 rounded-lg flex items-center justify-center">
+                      <FacilityIcon size={14} className="text-amber-400" />
                     </div>
-                    <div className="absolute inset-0 bg-amber-500/0 group-hover:bg-amber-500/[0.03] transition-all duration-500" />
                   </div>
 
                   <div className="p-6 flex flex-col flex-1">
@@ -443,14 +437,12 @@ export default function Home() {
 
       {/* ═══════════════════════════════════════════════════════════
           KENDY TOKEN SECTION
-          TODO Phase 2: Replace token card with actual app UI mockup
           TODO Phase 4: Replace href="#" with real token URL from client
       ═══════════════════════════════════════════════════════════ */}
       <section id="token" className="py-24 lg:py-32 border-t border-slate-800/50 bg-slate-900/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
 
-            {/* Left: Token visual */}
             <div className="flex items-center justify-center order-2 lg:order-1">
               <div className="relative">
                 <div className="w-72 h-44 bg-gradient-to-br from-amber-500/20 to-amber-500/5 border border-amber-500/30 rounded-3xl flex flex-col items-center justify-center gap-4">
@@ -468,7 +460,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: Content */}
             <div className="order-1 lg:order-2">
               <span className="text-amber-500 text-xs font-mono uppercase tracking-[0.2em] mb-5 block">
                 Access Model
@@ -488,7 +479,6 @@ export default function Home() {
                 access permanently free for all.
               </p>
 
-              {/* Token capabilities */}
               <div className="grid grid-cols-2 gap-3 mb-8">
                 {[
                   { label: "Capacity Management",    icon: Users },
@@ -509,9 +499,9 @@ export default function Home() {
                 })}
               </div>
 
-              {/* Token CTA — TODO Phase 4: Replace href="#" with real URL from client */}
-              
-              <a  href="#"
+              {/* TODO Phase 4: Replace href="#" with real token signup URL from client */}
+              <a
+                href="#"
                 className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 py-4 rounded text-sm transition-all group"
               >
                 Get Your Kendy Token — It's Free
@@ -526,12 +516,8 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          GALLERY / CAROUSEL SECTION
-          City names removed per client feedback.
-          Labels are facility-type only.
-          Phase 1: Static horizontal scrollable strip
-          TODO Phase 2: Populate with AI renders
-          TODO Phase 3: Infinite auto-scroll carousel
+          GALLERY / CAROUSEL SECTION — real renders, facility labels only
+          TODO Phase 3: Convert to infinite auto-scroll carousel
       ═══════════════════════════════════════════════════════════ */}
       <section id="gallery" className="py-24 lg:py-32 border-t border-slate-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
@@ -557,26 +543,23 @@ export default function Home() {
 
         <div className="w-full overflow-x-auto no-scrollbar pb-2">
           <div className="flex gap-4 px-4 sm:px-6 lg:px-8" style={{ width: "max-content" }}>
-            {[
-              { id: "01", label: "Basketball Complex" },
-              { id: "02", label: "7-Aside Football Turf" },
-              { id: "03", label: "Skating Area" },
-              { id: "04", label: "Tennis Court" },
-              { id: "05", label: "Calisthenics Zone" },
-            ].map((slide) => (
+            {gallerySlides.map((slide) => (
               <div
                 key={slide.id}
-                className="flex-shrink-0 w-[300px] sm:w-[400px] lg:w-[480px] aspect-video bg-slate-900 rounded-xl border border-slate-800 flex flex-col items-center justify-center hover:border-amber-500/15 transition-all"
+                className="relative flex-shrink-0 w-[300px] sm:w-[400px] lg:w-[480px] aspect-video rounded-xl border border-slate-800 overflow-hidden hover:border-amber-500/30 transition-all"
               >
-                {/* TODO Phase 2: Replace with:
-                    <div className="relative w-full h-full">
-                      <Image src={`/renders/gallery-${slide.id}.webp`}
-                      alt={slide.label} fill
-                      className="object-cover rounded-xl" />
-                    </div> */}
-                <span className="font-display font-bold text-4xl text-slate-800 mb-2">{slide.id}</span>
-                <p className="text-slate-700 text-xs font-mono">RENDER</p>
-                <p className="text-slate-600 text-xs mt-1 tracking-wide">{slide.label}</p>
+                <Image
+                  src={slide.img}
+                  alt={slide.label}
+                  fill
+                  className="object-cover"
+                  style={slide.position ? { objectPosition: slide.position } : undefined}
+                  sizes="(max-width: 640px) 300px, (max-width: 1024px) 400px, 480px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/10 to-transparent" />
+                <p className="absolute bottom-4 left-4 text-white text-sm font-semibold tracking-wide">
+                  {slide.label}
+                </p>
               </div>
             ))}
           </div>
@@ -639,14 +622,11 @@ export default function Home() {
 
       {/* ═══════════════════════════════════════════════════════════
           WHY IT MATTERS / INVESTOR SECTION
-          Copy sourced directly from SKYPARK brief.
-          Right column: real city data — no placeholders.
       ═══════════════════════════════════════════════════════════ */}
       <section id="invest" className="py-24 lg:py-36">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
 
-            {/* Left: Content */}
             <div>
               <span className="text-amber-500 text-xs font-mono uppercase tracking-[0.2em] mb-5 block">
                 Why It Matters
@@ -664,7 +644,6 @@ export default function Home() {
                 Kendy Token.
               </p>
 
-              {/* 4 pillars — directly from SKYPARK brief */}
               <div className="grid grid-cols-2 gap-3 mb-10">
                 {[
                   {
@@ -703,15 +682,15 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3">
-                
-                <a  href="#contact"
+                <a
+                  href="#contact"
                   className="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 py-4 rounded text-sm transition-all group"
                 >
                   Request Investor Deck
                   <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
                 </a>
-                
-                <a  href="#contact"
+                <a
+                  href="#contact"
                   className="inline-flex items-center justify-center gap-2 border border-slate-700 hover:border-slate-500 text-white px-8 py-4 rounded text-sm transition-all"
                 >
                   Schedule Discovery Call
@@ -719,7 +698,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: Scale plan — real data, no placeholders */}
             <div>
               <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 relative overflow-hidden">
                 <h4 className="font-display font-bold text-lg mb-2 text-white">
@@ -813,7 +791,6 @@ export default function Home() {
                 and the legacy of a park that serves generations.
               </p>
 
-              {/* TODO Phase 4: Replace all placeholder contact values */}
               <div className="space-y-5">
                 {[
                   { icon: MapPin, label: "Headquarters",      value: "Nairobi, Kenya" },
@@ -837,7 +814,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Form shell — TODO Phase 3: Replace divs with real inputs */}
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8">
               <h3 className="font-display font-bold text-xl mb-1">Partner Inquiry</h3>
               <p className="text-slate-500 text-sm mb-8">
@@ -946,8 +922,8 @@ export default function Home() {
                   <ul className="space-y-3">
                     {col.links.map((link) => (
                       <li key={link}>
-                        
-                        <a  href="#"
+                        <a
+                          href="#"
                           className="text-slate-500 hover:text-white text-sm transition-colors"
                         >
                           {link}
@@ -971,7 +947,7 @@ export default function Home() {
               <a href="#" className="text-slate-600 hover:text-slate-400 text-xs transition-colors">
                 Terms
               </a>
-              <span className="text-slate-800 text-xs font-mono">Phase 1 · v0.1.0</span>
+              <span className="text-slate-800 text-xs font-mono">Phase 2 · v0.2.0</span>
             </div>
           </div>
         </div>
